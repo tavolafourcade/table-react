@@ -42,11 +42,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const fetchData = async () => {
     try {
       const response: AxiosResponse<ApiResponse> = await axios.get(
-        "https://randomuser.me/api?results=20"
+        "https://randomuser.me/api?results=10"
       )
 
       setData(response.data.results)
-      setFilteredData(data)
+      setFilteredData(response.data.results)
       setTotalResults(response.data.info.results)
       
     } catch (error: any) {
