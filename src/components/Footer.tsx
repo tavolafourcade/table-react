@@ -5,7 +5,7 @@ const Footer = () => {
   const { numOfPages,totalResults } = useAppContext()
 
   return (
-    <div className="d-flex justify-content-between">
+    <div className="d-flex flex-column flex-md-row justify-content-md-between">
       <p className="fw-lighter">#Registros: {totalResults}</p>
       {
         numOfPages > 1 && <Pagination />

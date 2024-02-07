@@ -14,7 +14,7 @@ const MainPage = () => {
   }
   
   return (
-    <div className="container">
+    <div className="container-lg">
         <Navbar/>
         <TableHeader />
         <Filters />

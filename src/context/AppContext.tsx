@@ -67,7 +67,7 @@ export const AppContext = createContext<AppContextType>(state);
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [data, setData] = useState<Register[]>([])
   const [filteredData, setFilteredData] = useState<Register[]>([])
-  const [totalResults, setTotalResults] = useState<number>(100)
+  const [totalResults, setTotalResults] = useState<number>(50)
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [showFilters, setShowFilters] = useState<boolean>(false)
   const [currentPage, setCurrentPage] = useState<number>(1)

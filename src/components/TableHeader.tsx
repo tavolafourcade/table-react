@@ -10,9 +10,9 @@ const TableHeader = () => {
 
   return (
     <div  style={{ marginTop: '120px' }}>
-      <div className="d-flex justify-content-between align-items-center mb-4">
+      <div className="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center mb-4">
         <h2 className="fw-bold">Mi tabla</h2>
-        <div>
+        <div className="d-flex flex-column d-md-block">
           <button className="btn btn-sm btn-outline-primary px-4 me-2" onClick={(e) => handleToggleFilters(e)}>
               <i className="bi bi-sliders"></i> Filtros
           </button>
