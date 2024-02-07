@@ -1,12 +1,15 @@
-import { useContext } from "react"
-import { AppContext } from "../context/AppContext"
+import { useAppContext } from "../context/AppContext"
+import Pagination from "./Pagination"
 
 const Footer = () => {
-  const value = useContext(AppContext)
+  const { numOfPages,totalResults } = useAppContext()
 
   return (
-    <div>
-      <p className="fw-lighter">#Registros: {value?.totalResults}</p>
+    <div className="d-flex justify-content-between">
+      <p className="fw-lighter">#Registros: {totalResults}</p>
+      {
+        numOfPages > 1 && <Pagination />
+      }
     </div>
   )
 }
