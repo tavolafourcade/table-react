@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+## Resumen de la Aplicación
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Descripción
+La aplicación es una interfaz de usuario para mostrar registros de usuarios obtenidos de la API de RandomUser. Los usuarios pueden navegar entre páginas de registros, filtrar los registros por género y nacionalidad, buscar registros por nombre y visualizar detalles de cada registro.
 
-Currently, two official plugins are available:
+### Características Principales
+1. **Visualización de Registros:** Los registros de usuarios se muestran en una tabla paginada.
+2. **Filtros:** Los usuarios pueden filtrar los registros por género y nacionalidad.
+3. **Búsqueda:** Los usuarios pueden buscar registros por nombre.
+4. **Almacenamiento Local:** Los datos de la API se almacenan localmente para mejorar la velocidad de carga y minimizar las solicitudes a la API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Tecnologías Utilizadas
+- **React:** Biblioteca de JavaScript para construir interfaces de usuario.
+- **Axios:** Cliente HTTP basado en promesas para realizar solicitudes a la API.
+- **localStorage:** API de almacenamiento web para almacenar datos localmente en el navegador.
 
-## Expanding the ESLint configuration
+### Tecnologías Utilizadas
+- **React:** Biblioteca de JavaScript para construir interfaces de usuario.
+- **Vite:** Herramienta de compilación rápida para aplicaciones web modernas.
+- **Bootstrap:** Marco de diseño CSS para estilizar y diseñar componentes de forma rápida y fácil.
+- **Axios:** Cliente HTTP basado en promesas para realizar solicitudes a la API.
+- **localStorage:** API de almacenamiento web para almacenar datos localmente en el navegador.
+- **ESLint:** Herramienta de análisis estático de código para identificar y corregir problemas en el código JavaScript.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Uso
+1. Clonar el repositorio.
+2. Instalar dependencias con `npm install`.
+3. Ejecutar la aplicación con `npm run dev`.
+4. Navegar entre las páginas de registros, aplicar filtros, buscar registros y ver detalles individuales.
 
-- Configure the top-level `parserOptions` property like this:
+**Versión Desplegada:** [Users Table](https://table-react-seven.vercel.app/)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Mejoras Futuras
+1. Implementar la paginación del lado del servidor para manejar grandes conjuntos de datos de manera más eficiente.
+2. Agregar validación de formularios para mejorar la experiencia del usuario al ingresar filtros de búsqueda.
+3. Mejorar la experiencia de usuario con animaciones y transiciones suaves.
+4. Optimizar el rendimiento de la aplicación para tiempos de carga más rápidos y una experiencia más fluida.
