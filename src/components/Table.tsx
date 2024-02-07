@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react"
-import { AppContext, Register } from "../context/AppContext"
+import { useEffect } from "react"
+import { Register, useAppContext } from "../context/AppContext"
 
 
 export const Table = () => {
-  const value = useContext(AppContext)
+  const { fetchData, filterRegistersBySearchAndSelect, itemsPerPage, currentPage, searchQuery, filteredData, selectedGenre, selectedNat } = useAppContext()
 
   const isChecked = false
   const handleCheckboxChange = () => {
@@ -11,28 +11,45 @@ export const Table = () => {
   }
 
   useEffect(() => {
-    value?.fetchData()
+    fetchData()
   }, [])
 
   useEffect(() => {
-    value?.filterRegisters()
-  }, [value?.searchQuery])
+    filterRegistersBySearchAndSelect(selectedGenre, selectedNat)
+  }, [searchQuery])
+
+  const getCurrentPageData = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage
+    const endIndex = startIndex + itemsPerPage
+    return filteredData.slice(startIndex, endIndex)
+  }
+
+  const currentPageData = getCurrentPageData();
+
+  const tableHead = ["", "Nombre", "Genero", "Correo electrónico", "Celular", "Nacionalidad"]
+  const tableBody = ['name', 'gender', 'email', 'cell', 'nat']
 
   return (
     <>
       <table className="table table-hover table-light table-bordered">
         <thead>
           <tr className="table-secondary">
-            <th scope="col"><i className="bi bi-check-lg"></i></th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Genero</th>
-            <th scope="col">Correo electrónico</th>
-            <th scope="col">Celular</th>
-            <th scope="col">Nacionalidad</th>
+            {
+              tableHead.map((headerName, index) => (
+                <th key={index} scope="col">
+                  {index === 0 ? (
+                    <i className="bi bi-check-lg"></i>
+                  ) : (
+                    headerName
+                  )}
+                </th>
+              )
+              )
+            }
           </tr>
         </thead>
         <tbody>
-          {value?.filteredData.map((register: Register, index: number) => (
+          {currentPageData.map((register: Register, index: number) => (
             <tr key={index}>
               <th>
                 <input
@@ -41,16 +58,22 @@ export const Table = () => {
                   onChange={handleCheckboxChange}
                 />
               </th>
-              <td>{`${register.name.first} ${register.name.last}`}</td>
-              <td>{register.gender}</td>
-              <td>{register.email}</td>
-              <td>{register.cell}</td>
-              <td>{register.nat}</td>
+              {
+                tableBody.map((property, propertyIndex) => (
+                  <td key={propertyIndex} className="fw-light">
+                    {
+                      property === 'name'
+                      ? `${register.name.first} ${register.name.last}`
+                      : String(register[property as keyof Register])
+                    }
+                  </td>
+                ))
+              }
             </tr>
           ))}
         </tbody>
       </table>
     </>
-    
+
   )
 }
