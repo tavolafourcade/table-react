@@ -1,22 +1,23 @@
-import { useContext } from "react"
 import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
 import { SearchBar } from "./components/SearchBar"
 import { Table } from "./components/Table"
 import TableHeader from "./components/TableHeader"
-import { AppContext } from "./context/AppContext"
+import { useAppContext } from "./context/AppContext"
+import Filters from "./components/Filters"
 
 const MainPage = () => {
-  const value = useContext(AppContext)
+  const { setSearchQuery } = useAppContext()
 
   const handleSearch = (query:string)=>{
-    value?.setSearchQuery(query)
+    setSearchQuery(query)
   }
   
   return (
     <div className="container">
         <Navbar/>
         <TableHeader />
+        <Filters />
         <SearchBar onSearch={handleSearch}/>
         <Table />
         <Footer />

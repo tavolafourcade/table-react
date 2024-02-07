@@ -4,9 +4,6 @@ import { useAppContext } from "../context/AppContext"
 const Pagination: React.FC = () => {
   const { numOfPages, currentPage, changePage } = useAppContext()
 
-  console.log('numOfPages', numOfPages)
-  console.log('currentPage', currentPage)
-
   const pages = Array.from({ length: numOfPages }, (_, index) => index + 1)
 
   const prevPage = () => {

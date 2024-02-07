@@ -6,7 +6,7 @@ function App() {
   return (
     <AppProvider>
       <MainPage />
-      </AppProvider>
+    </AppProvider>
   )
 }
 
