@@ -96,12 +96,10 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setFilteredData(parsedData)
         setTotalResults(parsedData.length)
       } else {
-        console.log('Solicitud a la API iniciada')
         const response: AxiosResponse<ApiResponse> = await axios.get(
           `https://randomuser.me/api?seed=cdb146945fafa3b2&page=${currentPage}&results=${itemsPerPage}`
         )
-        console.log('Solicitud a la API culminada')
-
+        
         const newResults = response.data.results
         setData(newResults)
         setFilteredData(newResults)

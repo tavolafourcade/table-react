@@ -6,10 +6,7 @@ export const Table = () => {
   const { filterRegistersBySearchAndSelect, searchQuery, filteredData, selectedGenre, selectedNat, loading } = useAppContext()
 
   const isChecked = false
-  const handleCheckboxChange = () => {
-    // Lógica de cambio de checkbox
-  }
-    
+
   useEffect(() => {
     filterRegistersBySearchAndSelect(selectedGenre, selectedNat)
   }, [searchQuery])
@@ -58,7 +55,6 @@ export const Table = () => {
                     <input
                       type="checkbox"
                       checked={isChecked}
-                      onChange={handleCheckboxChange}
                     />
                   </th>
                   {
