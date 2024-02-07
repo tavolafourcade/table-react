@@ -33,7 +33,6 @@ const Pagination: React.FC = () => {
                 Anterior
             </button>
           </li>
-          {/* <li className="page-item active"><a className="page-link rounded border-0" href="#">1</a></li> */}
           {pages.map((pageNumber) => (
             <button
               type="button"
