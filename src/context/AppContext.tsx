@@ -22,6 +22,10 @@ interface ApiResponse {
   info: Info;
 }
 
+interface SelectedItems {
+  [key: number]: boolean;
+}
+
 interface AppContextType {
   filteredData: Register[];
   searchQuery: string;
@@ -41,6 +45,9 @@ interface AppContextType {
   currentPage: number;
   changePage: (page: number) => void;
   itemsPerPage: number;
+  handleSelection: (index: number) => void;
+  handleDeleteRegisters: () => void;
+  selectedItems: SelectedItems;
 }
 const state = {
   filteredData: [],
@@ -60,7 +67,10 @@ const state = {
   numOfPages: 1,
   currentPage: 1,
   itemsPerPage: 10,
-  changePage: () => { }
+  changePage: () => { },
+  selectedItems: {},
+  handleSelection: () => { },
+  handleDeleteRegisters: () => { },
 }
 export const AppContext = createContext<AppContextType>(state);
 
@@ -74,6 +84,8 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [selectedGenre, setSelectedGenre] = useState("all")
   const [selectedNat, setSelectedNat] = useState("all")
   const [loading, setLoading] = useState(true)
+  const [selectedItems, setSelectedItems] = useState<SelectedItems>({});
+
   const itemsPerPage = 10
   const [numOfPages, _] = useState(Math.ceil(totalResults / itemsPerPage))
 
@@ -99,7 +111,7 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         const response: AxiosResponse<ApiResponse> = await axios.get(
           `https://randomuser.me/api?seed=cdb146945fafa3b2&page=${currentPage}&results=${itemsPerPage}`
         )
-        
+
         const newResults = response.data.results
         setData(newResults)
         setFilteredData(newResults)
@@ -140,6 +152,21 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   }
 
+  const handleSelection = (index: number) => {
+    setSelectedItems((prevSelectedItems) => ({
+      ...prevSelectedItems,
+      [index]: !prevSelectedItems[index],
+    }));
+  };
+
+  const handleDeleteRegisters = () => {
+    const newFilteredData = filteredData.filter((_, index) => !selectedItems[index]);
+    setFilteredData(newFilteredData);
+    setTotalResults(newFilteredData.length);
+
+    setSelectedItems({});
+  }
+
   const contextValues = {
     ...state,
     filteredData,
@@ -159,7 +186,10 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     loading,
     setSelectedGenre,
     setSelectedNat,
-    setLoading
+    setLoading,
+    selectedItems,
+    handleSelection,
+    handleDeleteRegisters
   }
 
   return <AppContext.Provider value={contextValues}>{children}</AppContext.Provider>

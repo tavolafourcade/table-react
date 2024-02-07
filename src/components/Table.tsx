@@ -1,11 +1,9 @@
 import { useEffect } from "react"
 import { Register, useAppContext } from "../context/AppContext"
 
-
 export const Table = () => {
-  const { filterRegistersBySearchAndSelect, searchQuery, filteredData, selectedGenre, selectedNat, loading } = useAppContext()
+  const { filterRegistersBySearchAndSelect, searchQuery, filteredData, selectedGenre, selectedNat, loading, selectedItems, handleSelection } = useAppContext()
 
-  const isChecked = false
 
   useEffect(() => {
     filterRegistersBySearchAndSelect(selectedGenre, selectedNat)
@@ -55,7 +53,8 @@ export const Table = () => {
                     <th>
                       <input
                         type="checkbox"
-                        checked={isChecked}
+                        checked={selectedItems[index] || false}
+                      onChange={() => handleSelection(index)}
                       />
                     </th>
                     {
