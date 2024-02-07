@@ -16,7 +16,7 @@ const Filters = () => {
         <div className="card border-0 shadow-sm">
           <div className="card-body">
             <div className="row py-3">
-              <div className="form-group col-sm-12 col-lg-4">
+              <div className="form-group col-sm-12 col-lg-4 mb-2 mb-md-0">
                 <div className="input-group">
                   <select
                     className="form-select form-select-sm single-select select-bs"
@@ -33,7 +33,7 @@ const Filters = () => {
                   </select>
                 </div>
               </div>
-              <div className="form-group col-sm-12 col-lg-4 ">
+              <div className="form-group col-sm-12 col-lg-4 mb-2 mb-md-0">
                 <div className="input-group ">
                   <select
                     className="form-select form-select-sm single-select select-bs"
